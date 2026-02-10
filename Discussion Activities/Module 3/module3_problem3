@@ -1,0 +1,27 @@
+# Initializing dist (Source A = 0, others = Infinity)
+# Setting distance to infinity for nodes after source
+dist = {
+    'A': 0,
+    'B': float('inf'),
+    'C': float('inf'),
+    'D': float('inf')
+}
+
+# Edges in the problem
+edges = [
+    ('A', 'B', 4),
+    ('A', 'C', 2),
+    ('C', 'B', -1),
+    ('B', 'D', 2),
+    ('C', 'D', 5)
+]
+
+def bellman_update(dist, edges):
+    for u, v, w in edges:
+        if dist[u] + w < dist[v]:
+            dist[v] = dist[u] + w
+    return dist
+
+updated_distance = bellman_update(dist, edges)
+
+print(updated_distance)
